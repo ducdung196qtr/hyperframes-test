@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { 
+    width:1080px; height:1920px; overflow:hidden; 
+    background:#000; font-family:'Roboto',Arial,sans-serif;
+  }
+  .scene { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0; }
+  .bg-img { position:absolute; inset:0; background-size:cover; background-position:center; filter: brightness(0.55); transform: scale(1.08); }
+  .overlay { position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 35%, rgba(0,0,0,0.75) 100%); }
+  .text-block { position:absolute; bottom:180px; left:60px; right:60px; z-index:10; }
+  .main-text { font-size:70px; font-weight:900; color:#fff; text-shadow: 0 4px 40px rgba(0,0,0,0.85); line-height:1.2; margin-bottom:20px; }
+  .sub-text { font-size:36px; font-weight:700; color:rgba(255,255,255,0.9); text-shadow: 0 2px 20px rgba(0,0,0,0.7); line-height:1.35; }
+  .highlight { color:#FFD700; }
+  .cta-box { position:absolute; bottom:100px; left:80px; right:80px; background:rgba(0,0,0,0.75); border-radius:20px; padding:28px; border:2px solid rgba(255,255,255,0.25); z-index:10; }
+  .cta-text { font-size:38px; font-weight:900; color:#fff; text-align:center; }
+  .cta-link { font-size:28px; font-weight:700; color:#FFD700; text-align:center; margin-top:10px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+<!-- Scene templates — replace bg images and text per video -->
+<div class="scene" id="scene1">
+  <div class="bg-img" style="background-image:url('YOUR_IMAGE_1.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="text-block" id="text1">
+    <div class="main-text">Hook text<br><span class="highlight">KEY PHRASE</span></div>
+  </div>
+</div>
+<div class="scene" id="scene2">
+  <div class="bg-img" style="background-image:url('YOUR_IMAGE_2.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="text-block" id="text2">
+    <div class="main-text">Main message</div>
+    <div class="sub-text">Supporting detail</div>
+  </div>
+</div>
+<div class="scene" id="scene3">
+  <div class="bg-img" style="background-image:url('YOUR_IMAGE_3.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="cta-box" id="cta">
+    <div class="cta-text">Đọc phân tích đầy đủ</div>
+    <div class="cta-link">your-site.vercel.app</div>
+  </div>
+</div>
+<script>
+const tl = gsap.timeline();
+// SCENE 1 — adjust timing to match TTS segments
+tl.set("#scene1", {opacity:1})
+  .from("#scene1 .bg-img", {scale:1.25, duration:1, ease:"power2.out"}, 0)
+  .from("#text1", {y:80, opacity:0, duration:0.8, ease:"back.out(1.5)"}, 0.2)
+  .to("#text1", {opacity:0, duration:0.4}, 5.0)
+  .to("#scene1", {opacity:0, duration:0.3}, 5.3)
+// SCENE 2
+  .set("#scene2", {opacity:1}, 5.3)
+  .from("#scene2 .bg-img", {scale:1.25, duration:1.2, ease:"power2.out"}, 5.3)
+  .from("#text2", {y:100, opacity:0, duration:0.7, ease:"back.out(1.7)"}, 5.8)
+  .to("#text2", {opacity:0, duration:0.4}, 10.2)
+  .to("#scene2", {opacity:0, duration:0.3}, 10.6)
+// SCENE 3
+  .set("#scene3", {opacity:1}, 10.6)
+  .from("#scene3 .bg-img", {scale:1.25, duration:1.2, ease:"power2.out"}, 10.6)
+  .from("#cta", {y:80, opacity:0, scale:0.9, duration:0.8, ease:"back.out(1.3)"}, 12.0);
+</script>
+</body>
+</html>
