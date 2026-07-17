@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+  
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  body {
+    width: 1080px; height: 1920px; overflow: hidden;
+    background: #0a0f1a;
+    font-family: 'Oswald', 'Arial Black', sans-serif;
+    color: #ffffff;
+    position: relative;
+  }
+
+  /* === SCENE CONTAINER === */
+  .scene {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    opacity: 0;
+    z-index: 10;
+  }
+
+  /* === IMAGE ZONE (top 60%) === */
+  .img-zone {
+    width: 100%; height: 62%;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-zone img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .img-gradient {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, 
+      transparent 60%,
+      rgba(10,15,26,0.6) 85%,
+      #0a0f1a 100%
+    );
+  }
+
+  /* === TEXT ZONE (bottom 38%) === */
+  .text-zone {
+    width: 100%; height: 38%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: flex-start;
+    padding: 25px 55px 30px;
+    position: relative; z-index: 2;
+    background: #0a0f1a;
+  }
+
+  .headline {
+    font-size: 82px; font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+  }
+  .headline .gold { color: #FFC300; }
+  .headline .red { color: #E71D36; text-shadow: 0 0 30px rgba(231,29,54,0.4); }
+  .headline .cyan { color: #06b6d4; }
+
+  .subtext {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 28px; font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    line-height: 1.4;
+    margin-top: 15px;
+    max-width: 800px;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #E71D36;
+    color: #fff;
+    font-size: 26px; font-weight: 700;
+    padding: 12px 30px;
+    letter-spacing: 0.15em;
+    margin-bottom: 15px;
+    box-shadow: 0 0 25px rgba(231,29,54,0.5);
+  }
+
+  .stat-big {
+    font-size: 140px; font-weight: 700;
+    text-align: center;
+    line-height: 1;
+  }
+  .stat-big .gold { color: #FFC300; }
+  .stat-big .cyan { color: #06b6d4; }
+
+  .quote-box {
+    background: rgba(255,255,255,0.08);
+    border-left: 4px solid #FFC300;
+    padding: 25px 35px;
+    max-width: 850px;
+    margin-top: 5px;
+  }
+  .quote-box p {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 32px; font-weight: 300;
+    font-style: italic;
+    line-height: 1.4;
+    color: rgba(255,255,255,0.9);
+  }
+  .quote-box .attr {
+    font-size: 22px; font-weight: 400;
+    font-style: normal;
+    color: #FFC300;
+    margin-top: 12px;
+    text-align: right;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: #FFC300;
+    color: #0a0f1a;
+    font-size: 34px; font-weight: 700;
+    padding: 18px 50px;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    box-shadow: 0 8px 35px rgba(255,195,0,0.35);
+    margin-top: 10px;
+  }
+  .cta-sub {
+    font-family: 'Helvetica Neue', 'Arial', sans-serif;
+    font-size: 22px; color: rgba(255,255,255,0.45);
+    margin-top: 14px;
+  }
+  .brand {
+    font-size: 26px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    margin-top: 25px;
+  }
+
+  /* Scanlines */
+  .scanlines {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 3px,
+      rgba(0,0,0,0.05) 3px, rgba(0,0,0,0.05) 4px
+    );
+    pointer-events: none; z-index: 996;
+  }
+  .vignette {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, transparent 50%, rgba(10,15,26,0.5) 100%);
+    pointer-events: none; z-index: 995;
+  }
+</style>
+</head>
+<body>
+
+<div class="scanlines"></div>
+<div class="vignette"></div>
+
+<!-- SCENE 1: "AI hứa sẽ GIẢI PHÓNG" — Ảnh AI robot -->
+<div class="scene" id="s1">
+  <div class="img-zone">
+    <img src="ai_burnout_1.jpeg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="headline">
+      AI hứa sẽ<br>
+      <span class="gold">GIẢI PHÓNG</span><br>
+      con người
+    </div>
+    <div class="subtext">Tương lai không còn code tay, không còn deadline</div>
+  </div>
+</div>
+
+<!-- SCENE 2: "NHƯNG" — Ảnh sleeping dev -->
+<div class="scene" id="s2">
+  <div class="img-zone">
+    <img src="sleeping_dev_1.jpg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="headline" style="font-size:95px">
+      <span class="red">NHƯNG</span><br>
+      sự thật là...
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 3: BREAKING badge — Ảnh sleeping dev 2 -->
+<div class="scene" id="s3">
+  <div class="img-zone">
+    <img src="sleeping_dev_2.jpg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="badge">🔴 BREAKING</div>
+    <div class="headline" style="font-size:78px">
+      LẬP TRÌNH VIÊN<br>
+      <span class="red">NGỦ GỤC</span><br>
+      giữa ngày
+    </div>
+    <div class="subtext">Kiệt sức vì quản lý AI Agent</div>
+  </div>
+</div>
+
+<!-- SCENE 4: 20+ AI — Ảnh multitask -->
+<div class="scene" id="s4">
+  <div class="img-zone">
+    <img src="multitask_1.jpg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="stat-big">
+      <span class="cyan">20+</span> <span class="gold">AI</span>
+    </div>
+    <div class="headline" style="font-size:60px; margin-top:-10px">1 con người</div>
+    <div class="subtext">Tỷ lệ phi lý đang bào mòn lập trình viên toàn cầu</div>
+  </div>
+</div>
+
+<!-- SCENE 5: Quote — Ảnh AI burnout 2 -->
+<div class="scene" id="s5">
+  <div class="img-zone">
+    <img src="ai_burnout_2.jpeg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="quote-box">
+      <p>"Nếu bạn ngủ, bạn sẽ không ở bên 20 AI Agent của mình."</p>
+      <div class="attr">— Marc Andreessen</div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENE 6: CTA — Ảnh multitask 2 -->
+<div class="scene" id="s6">
+  <div class="img-zone">
+    <img src="multitask_2.jpg">
+    <div class="img-gradient"></div>
+  </div>
+  <div class="text-zone">
+    <div class="headline" style="font-size:75px">
+      Đọc phân tích<br>
+      <span class="gold">ĐẦY ĐỦ</span>
+    </div>
+    <a class="cta-btn" href="https://next-blog-vert.vercel.app">ĐỌC NGAY →</a>
+    <div class="cta-sub">next-blog-vert.vercel.app</div>
+    <div class="brand">NewsPress</div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+// AUDIO-SYNCED — 34.0s, 1020 frames @ 30fps
+const DURATION = 34.0;
+const tl = gsap.timeline({ paused: true });
+
+gsap.set([s1,s2,s3,s4,s5,s6], { opacity: 0, scale: 1.04 });
+
+// S1 [0.0→3.5s] AI hứa GIẢI PHÓNG
+tl.to(s1, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0.0)
+  .to(s1, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 3.2);
+
+// S2 [3.8→8.5s] NHƯNG! + kiệt sức
+tl.to(s2, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, 3.8)
+  .to(s2, { keyframes: [{x:-6,dur:0.04},{x:6,dur:0.04},{x:0,dur:0.04}] }, 4.8)
+  .to(s2, { opacity: 0, scale: 1.05, duration: 0.3, ease: "power3.in" }, 8.2);
+
+// S3 [8.5→16.0s] 20 AI + BÀO MÒN
+tl.to(s3, { opacity: 1, scale: 0.9, duration: 0.04 }, 8.5)
+  .to(s3, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(3)" }, 8.6)
+  .to(s3, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 15.7);
+
+// S4 [16.0→19.5s] Nếu bạn ngủ...
+tl.to(s4, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 16.0)
+  .to(s4, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 19.2);
+
+// S5 [19.5→28.5s] Quote
+tl.to(s5, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 19.5)
+  .to(s5, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 28.2);
+
+// S6 [28.5→34.0s] CTA stays
+tl.to(s6, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 28.5);
+
+window.__timelines = { "main": tl };
+window.seekTo = function(t) { tl.progress(Math.min(t / DURATION, 1.0)); };
+</script>
+</body>
+</html>

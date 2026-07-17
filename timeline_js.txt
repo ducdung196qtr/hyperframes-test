@@ -1,0 +1,35 @@
+<script>
+// AUDIO-SYNCED — 34.0s, 1020 frames
+const DURATION = 34.0;
+const tl = gsap.timeline({ paused: true });
+
+gsap.set([s1,s2,s3,s4,s5,s6], { opacity: 0, scale: 1.04 });
+
+// S1 [0.0→3.5s] AI hứa GIẢI PHÓNG
+tl.to(s1, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0.0)
+  .to(s1, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 3.2);
+
+// S2 [3.8→8.5s] NHƯNG! + kiệt sức
+tl.to(s2, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(3)" }, 3.8)
+  .to(s2, { keyframes: [{x:-6,dur:0.04},{x:6,dur:0.04},{x:0,dur:0.04}] }, 4.8)
+  .to(s2, { opacity: 0, scale: 1.05, duration: 0.3, ease: "power3.in" }, 8.2);
+
+// S3 [8.5→16.0s] 20 AI + BÀO MÒN
+tl.to(s3, { opacity: 1, scale: 0.9, duration: 0.04 }, 8.5)
+  .to(s3, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(3)" }, 8.6)
+  .to(s3, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 15.7);
+
+// S4 [16.0→19.5s] Nếu bạn ngủ...
+tl.to(s4, { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 16.0)
+  .to(s4, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 19.2);
+
+// S5 [19.5→28.5s] quote 
+tl.to(s5, { opacity: 1, scale: 1, duration: 0.5, ease: "power3.out" }, 19.5)
+  .to(s5, { opacity: 0, scale: 1.04, duration: 0.3, ease: "power3.in" }, 28.2);
+
+// S6 [28.5→34.0s] CTA stays
+tl.to(s6, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 28.5);
+
+window.__timelines = { "main": tl };
+window.seekTo = function(t) { tl.progress(Math.min(t / DURATION, 1.0)); };
+</script>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { 
+    width:1080px; height:1920px; overflow:hidden; 
+    background:#000; font-family:'Roboto',Arial,sans-serif;
+  }
+  .scene { 
+    position:absolute; inset:0; display:flex; 
+    align-items:center; justify-content:center; 
+    opacity:0; 
+  }
+  .bg-img {
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    filter: brightness(0.55);
+    transform: scale(1.08);
+  }
+  .overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, 
+      rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 35%, 
+      rgba(0,0,0,0.75) 100%);
+  }
+  .text-block {
+    position:absolute; bottom:180px; left:60px; right:60px; z-index:10;
+  }
+  .main-text {
+    font-size:70px; font-weight:900; color:#fff;
+    text-shadow: 0 4px 40px rgba(0,0,0,0.85), 0 2px 8px rgba(0,0,0,0.5);
+    line-height:1.2; margin-bottom:20px;
+    letter-spacing:-0.5px;
+  }
+  .sub-text {
+    font-size:36px; font-weight:700; color:rgba(255,255,255,0.9);
+    text-shadow: 0 2px 20px rgba(0,0,0,0.7);
+    line-height:1.35;
+  }
+  .highlight { color:#FFD700; }
+  .cta-box {
+    position:absolute; bottom:100px; left:80px; right:80px;
+    background:rgba(0,0,0,0.75); border-radius:20px; padding:28px;
+    border:2px solid rgba(255,255,255,0.25); z-index:10;
+  }
+  .cta-text { font-size:38px; font-weight:900; color:#fff; text-align:center; }
+  .cta-link { font-size:28px; font-weight:700; color:#FFD700; text-align:center; margin-top:10px; }
+  .brand-badge {
+    position:absolute; top:50px; right:50px; z-index:10;
+    background:rgba(0,0,0,0.65); border-radius:12px; padding:14px 22px;
+    font-size:24px; color:rgba(255,255,255,0.75); font-weight:700;
+  }
+  .pulse-dot {
+    display:inline-block; width:14px; height:14px; 
+    background:#ff4444; border-radius:50%; margin-right:8px;
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.4; transform:scale(1.3); }
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body>
+
+<!-- SCENE 1: AI promise vs reality (0-5.3s) -->
+<div class="scene" id="scene1">
+  <div class="bg-img" style="background-image:url('ai_burnout_1.jpeg')"></div>
+  <div class="overlay"></div>
+  <div class="text-block" id="text1a">
+    <div class="main-text">AI hứa sẽ<br><span class="highlight">GIẢI PHÓNG</span><br>con người</div>
+  </div>
+  <div class="text-block" id="text1b" style="opacity:0">
+    <div class="main-text" style="color:#ff6666;font-size:64px">NHƯNG<br>sự thật là...</div>
+  </div>
+</div>
+
+<!-- SCENE 2: Sleeping dev (5.3-10.6s) -->
+<div class="scene" id="scene2">
+  <div class="bg-img" style="background-image:url('sleeping_dev_1.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="brand-badge"><span class="pulse-dot"></span> BREAKING</div>
+  <div class="text-block" id="text2">
+    <div class="main-text" style="font-size:66px">LTV ngủ gục<br>giữa ngày</div>
+    <div class="sub-text" style="margin-top:16px">vì kiệt sức<br>quản lý AI Agent</div>
+  </div>
+</div>
+
+<!-- SCENE 3: Quote + CTA (10.6-15.8s) -->
+<div class="scene" id="scene3">
+  <div class="bg-img" style="background-image:url('multitask_1.jpg')"></div>
+  <div class="overlay"></div>
+  <div class="text-block" id="text3a" style="bottom:380px">
+    <div class="sub-text" style="font-size:34px;font-style:italic;color:rgba(255,255,255,0.95)">
+      "Nếu bạn ngủ, bạn sẽ<br>không ở bên 20 AI agent"
+    </div>
+    <div class="sub-text" style="font-size:24px;color:rgba(255,255,255,0.5);margin-top:8px">
+      — Marc Andreessen
+    </div>
+  </div>
+  <div class="cta-box" id="text3b">
+    <div class="cta-text">Đọc phân tích đầy đủ</div>
+    <div class="cta-link">next-blog-vert.vercel.app</div>
+  </div>
+</div>
+
+<script>
+const tl = gsap.timeline();
+
+// ── SCENE 1: AI hứa giải phóng ──
+tl.set("#scene1", {opacity:1})
+  .from("#scene1 .bg-img", {scale:1.25, duration:1, ease:"power2.out"}, 0)
+  .from("#text1a", {y:80, opacity:0, duration:0.8, ease:"back.out(1.5)"}, 0.2)
+  .to("#text1a", {opacity:0, y:-30, duration:0.5, ease:"power2.in"}, 3.2)
+  .from("#text1b", {y:60, opacity:0, scale:0.9, duration:0.7, ease:"back.out(1.4)"}, 3.4)
+  .to("#text1b", {opacity:0, duration:0.4}, 5.0)
+  .to("#scene1", {opacity:0, duration:0.3}, 5.3)
+
+// ── SCENE 2: Ngủ gục giữa ngày ──
+  .set("#scene2", {opacity:1}, 5.3)
+  .from("#scene2 .bg-img", {scale:1.25, duration:1.2, ease:"power2.out"}, 5.3)
+  .from("#scene2 .brand-badge", {x:100, opacity:0, duration:0.5, ease:"back.out(1.5)"}, 5.5)
+  .from("#text2 .main-text", {y:100, opacity:0, duration:0.7, ease:"back.out(1.7)"}, 5.8)
+  .from("#text2 .sub-text", {y:60, opacity:0, duration:0.6, ease:"power2.out"}, 6.5)
+  .to("#text2", {opacity:0, y:-20, duration:0.4}, 10.2)
+  .to("#scene2", {opacity:0, duration:0.3}, 10.6)
+
+// ── SCENE 3: Quote + CTA ──
+  .set("#scene3", {opacity:1}, 10.6)
+  .from("#scene3 .bg-img", {scale:1.25, duration:1.2, ease:"power2.out"}, 10.6)
+  .from("#text3a", {y:60, opacity:0, duration:0.6, ease:"power2.out"}, 11.0)
+  .from("#text3b", {y:80, opacity:0, scale:0.9, duration:0.8, ease:"back.out(1.3)"}, 12.5)
+  .to("#text3b", {scale:1.02, duration:0.5, yoyo:true, repeat:2, ease:"power1.inOut"}, 13.3);
+</script>
+</body>
+</html>
